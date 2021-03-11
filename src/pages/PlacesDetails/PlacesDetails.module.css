@@ -29,7 +29,8 @@
 }
 
 .infoContainer h1,
-h3 {
+h3,
+a {
     padding-bottom: 1rem;
 }
 

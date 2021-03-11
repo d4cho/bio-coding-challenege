@@ -61,7 +61,9 @@ const PlacesDetails = () => {
                 <div className={styles.infoContainer}>
                     <h1>{placeDetail.name}</h1>
                     <h3>{placeDetail.address}</h3>
-                    <h3>{placeDetail.website_url}</h3>
+                    <a href={placeDetail.website_url}>
+                        {placeDetail.website_url}
+                    </a>
                     <h3>{placeHours}</h3>
                 </div>
             </div>
