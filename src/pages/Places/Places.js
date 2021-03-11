@@ -19,9 +19,18 @@ const Places = () => {
         Object.keys(placesStore).map((placeId) => {
             const place = placesStore[placeId];
             const { id, name, website_url, address } = place;
+            let imgSrc = place.logo_url;
+
             return (
                 <div key={id} className={styles.cardContainer}>
-                    <div>{id}</div>
+                    <img
+                        className={styles.img}
+                        src={imgSrc}
+                        alt="logo"
+                        onError={(e) =>
+                            (e.target.src = "/images/default-image.jpg")
+                        }
+                    />
                     <div>
                         <Link className={styles.link} to={`/places/${id}`}>
                             {name}

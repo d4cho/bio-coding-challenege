@@ -54,6 +54,7 @@ const PlacesDetails = () => {
             <BackButton text={"< Go back to Places"} />
             <div className={styles.contentContainer}>
                 <img
+                    className={styles.img}
                     src={imageSrc}
                     alt="logo"
                     onError={() => setImageSrc("/images/default-image.jpg")}
