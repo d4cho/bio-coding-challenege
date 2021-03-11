@@ -10,6 +10,7 @@ const Places = () => {
     const { placesStore, getPlacesData, isLoading, errorMsg } = useContext(
         PlacesContext
     );
+    console.log(placesStore);
 
     useEffect(() => {
         getPlacesData();
@@ -20,20 +21,22 @@ const Places = () => {
             const place = placesStore[placeId];
             const { id, name, website_url, address } = place;
             return (
-                <tr key={id}>
-                    <td>{id}</td>
-                    <td>
-                        <Link to={`/places/${id}`}>{name}</Link>
-                    </td>
-                    <td>{website_url}</td>
-                    <td>{address}</td>
-                </tr>
+                <div key={id} className={styles.cardContainer}>
+                    <div>{id}</div>
+                    <div>
+                        <Link className={styles.link} to={`/places/${id}`}>
+                            {name}
+                        </Link>
+                    </div>
+                    <div>{website_url}</div>
+                    <div>{address}</div>
+                </div>
             );
         });
 
     if (isLoading) {
         return (
-            <div>
+            <div className={styles.container}>
                 <h1>Places Page</h1>
                 <Loading loadingMsg="Loading..." />
             </div>
@@ -42,7 +45,7 @@ const Places = () => {
 
     if (errorMsg) {
         return (
-            <div>
+            <div className={styles.container}>
                 <h1>Places Page</h1>
                 <Error errorMsg={errorMsg} />
             </div>
@@ -50,19 +53,9 @@ const Places = () => {
     }
 
     return (
-        <div>
-            <h1>Places Page</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Business ID</th>
-                        <th>Business Name</th>
-                        <th>Website</th>
-                        <th>Address</th>
-                    </tr>
-                </thead>
-                <tbody>{renderTableRows()}</tbody>
-            </table>
+        <div className={styles.container}>
+            <h1 className={styles.title}>Places Page</h1>
+            {renderTableRows()}
         </div>
     );
 };
