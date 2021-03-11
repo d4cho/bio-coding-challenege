@@ -29,8 +29,6 @@ const Places = () => {
         getPlacesData();
     }, [setPlacesStore]);
 
-    console.log(placesStore);
-
     const renderTableRows = () =>
         Object.keys(placesStore).map((placeId) => {
             const place = placesStore[placeId];
