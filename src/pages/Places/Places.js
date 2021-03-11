@@ -15,7 +15,7 @@ const Places = () => {
         getPlacesData();
     }, [getPlacesData]);
 
-    const renderTableRows = () =>
+    const renderCards = () =>
         Object.keys(placesStore).map((placeId) => {
             const place = placesStore[placeId];
             const { id, name, website_url, address } = place;
@@ -27,7 +27,7 @@ const Places = () => {
                             {name}
                         </Link>
                     </div>
-                    <div>{website_url}</div>
+                    <a href={website_url}>{website_url}</a>
                     <div>{address}</div>
                 </div>
             );
@@ -54,7 +54,7 @@ const Places = () => {
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Places Page</h1>
-            {renderTableRows()}
+            {renderCards()}
         </div>
     );
 };

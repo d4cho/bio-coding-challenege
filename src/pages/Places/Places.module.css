@@ -47,7 +47,8 @@
         align-items: flex-start;
         flex-wrap: wrap;
     }
-    .cardContainer div {
+    .cardContainer div,
+    a {
         padding-bottom: 1rem;
     }
 }
