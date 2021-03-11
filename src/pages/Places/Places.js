@@ -1,7 +1,10 @@
 import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
+import styles from "./Places.module.css";
 import { PlacesContext } from "../../context/PlacesContext";
+import Error from "../../components/error/Error";
+import Loading from "../../components/loading/Loading";
 
 const Places = () => {
     const { placesStore, getPlacesData, isLoading, errorMsg } = useContext(
@@ -32,7 +35,7 @@ const Places = () => {
         return (
             <div>
                 <h1>Places Page</h1>
-                <div>Loading...</div>
+                <Loading loadingMsg="Loading..." />
             </div>
         );
     }
@@ -41,7 +44,7 @@ const Places = () => {
         return (
             <div>
                 <h1>Places Page</h1>
-                <div>{errorMsg}</div>
+                <Error errorMsg={errorMsg} />
             </div>
         );
     }
