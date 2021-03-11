@@ -24,11 +24,13 @@ const PlacesDetails = () => {
                 } catch (error) {
                     setErrorMsg("There was an error retrieving data");
                 }
+            } else {
+                setImageSrc(placesStore[placeId].logo_url);
             }
             setIsLoading(false);
         }
         getPlaceDetailData();
-    });
+    }, [placeId, placesStore, setPlacesStore]);
 
     const goBackLink = <Link to="/">Go back to Places</Link>;
 
