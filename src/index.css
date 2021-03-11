@@ -5,7 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat";
-    --background: hsl(180, 52%, 96%);
-    --primary: hsl(180, 45%, 62%);
-    --secondary: hsl(180, 14%, 20%);
+    --background: rgb(237, 237, 237);
+    --green: rgba(177, 227, 25, 1);
+    --pink: rgb(221, 6, 147);
 }

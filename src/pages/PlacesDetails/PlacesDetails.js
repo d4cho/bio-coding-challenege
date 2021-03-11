@@ -1,53 +1,41 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import axios from "axios";
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
+import styles from "./PlacesDetails.module.css";
 import { PlacesContext } from "../../context/PlacesContext";
+import Error from "../../components/error/Error";
+import Loading from "../../components/loading/Loading";
+import BackButton from "../../components/buttons/BackButton";
 
 const PlacesDetails = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [errorMsg, setErrorMsg] = useState("");
-    const [imageSrc, setImageSrc] = useState("");
     const { placeId } = useParams();
-    const { placesStore, setPlacesStore } = useContext(PlacesContext);
+    const {
+        placesStore,
+        getPlaceDetailData,
+        isLoading,
+        errorMsg,
+        imageSrc,
+        setImageSrc,
+    } = useContext(PlacesContext);
 
     useEffect(() => {
-        async function getPlaceDetailData() {
-            if (!placesStore.hasOwnProperty(placeId)) {
-                try {
-                    const response = await axios.get(
-                        `https://6025865136244d001797c552.mockapi.io/api/v1/places/${placeId}`
-                    );
-                    const store = { ...placesStore, [placeId]: response.data };
-                    setPlacesStore(store);
-                    setImageSrc(response.data.logo_url);
-                } catch (error) {
-                    setErrorMsg("There was an error retrieving data");
-                }
-            } else {
-                setImageSrc(placesStore[placeId].logo_url);
-            }
-            setIsLoading(false);
-        }
-        getPlaceDetailData();
-    }, [placeId, placesStore, setPlacesStore]);
-
-    const goBackLink = <Link to="/">Go back to Places</Link>;
+        getPlaceDetailData(placeId);
+    }, [getPlaceDetailData, placeId]);
 
     if (isLoading) {
         return (
-            <div>
-                {goBackLink}
-                <div>Loading...</div>
+            <div className={styles.container}>
+                <BackButton text={"< Go back to Places"} />
+                <Loading loadingMsg="Loading..." />
             </div>
         );
     }
 
     if (errorMsg) {
         return (
-            <div>
-                {goBackLink}
-                <div>{errorMsg}</div>
+            <div className={styles.container}>
+                <BackButton text={"< Go back to Places"} />
+                <Error errorMsg={errorMsg} />
             </div>
         );
     }
@@ -55,26 +43,27 @@ const PlacesDetails = () => {
     const placeDetail = placesStore[placeId];
 
     let placeHours = Object.keys(placeDetail.hours).map((day) => (
-        <div key={day}>
-            {day}: {placeDetail.hours[day]}
+        <div key={day} className={styles.hoursContainer}>
+            <span>{day}</span>
+            <span>{placeDetail.hours[day]}</span>
         </div>
     ));
 
     return (
-        <div>
-            {goBackLink}
-            <img
-                src={imageSrc}
-                alt="logo"
-                onError={() => setImageSrc("/images/default-image.jpg")}
-            />
-            <div>
-                <ul>
-                    <li>Business Name: {placeDetail.name}</li>
-                    <li>Address: {placeDetail.address}</li>
-                    <li>Website: {placeDetail.website_url}</li>
-                    <li>Hours: {placeHours}</li>
-                </ul>
+        <div className={styles.container}>
+            <BackButton text={"< Go back to Places"} />
+            <div className={styles.contentContainer}>
+                <img
+                    src={imageSrc}
+                    alt="logo"
+                    onError={() => setImageSrc("/images/default-image.jpg")}
+                />
+                <div className={styles.infoContainer}>
+                    <h1>{placeDetail.name}</h1>
+                    <h3>{placeDetail.address}</h3>
+                    <h3>{placeDetail.website_url}</h3>
+                    <h3>{placeHours}</h3>
+                </div>
             </div>
         </div>
     );

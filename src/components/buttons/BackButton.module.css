@@ -1,0 +1,24 @@
+.btn {
+    font-size: 1.5rem;
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: black;
+    background-color: var(--green);
+
+    border: 2px solid var(--pink);
+    outline: 2px solid var(--pink);
+    outline-offset: -2px;
+    transition: outline-offset 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn:hover {
+    outline-offset: -10px;
+    color: white;
+}
+
+@media screen and (max-width: 500px) {
+    .btn {
+        font-size: 1rem;
+    }
+}

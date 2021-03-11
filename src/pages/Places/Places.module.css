@@ -12,13 +12,13 @@
 
 .link {
     text-decoration: none;
-    color: var(--secondary);
+    color: black;
     transition: color 0.3s ease-in-out;
     font-size: 1.5rem;
 }
 
 .link:hover {
-    color: var(--background);
+    color: white;
 }
 
 .cardContainer {
@@ -28,8 +28,8 @@
     display: grid;
     grid-template-columns: 0.5fr 2fr 2fr 2fr;
     align-items: center;
-    background-color: var(--primary);
-    box-shadow: 4px 4px 10px grey;
+    background-color: var(--green);
+    box-shadow: 4px 4px 10px black;
 }
 
 @media screen and (max-width: 768px) {

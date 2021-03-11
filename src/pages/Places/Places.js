@@ -10,7 +10,6 @@ const Places = () => {
     const { placesStore, getPlacesData, isLoading, errorMsg } = useContext(
         PlacesContext
     );
-    console.log(placesStore);
 
     useEffect(() => {
         getPlacesData();
