@@ -21,7 +21,7 @@ const PlacesProvider = ({ children }) => {
             setPlacesStore(store);
         } catch (error) {
             setPlacesStore({});
-            setErrorMsg("There was an error retrieving data");
+            setErrorMsg("Oops... couldn't retrieve data");
         }
         setIsLoading(false);
     }, []);
@@ -37,7 +37,7 @@ const PlacesProvider = ({ children }) => {
                     setPlacesStore(store);
                     setImageSrc(response.data.logo_url);
                 } catch (error) {
-                    setErrorMsg("There was an error retrieving data");
+                    setErrorMsg("Oops... couldn't retrieve data");
                 }
             } else {
                 setImageSrc(placesStore[placeId].logo_url);
