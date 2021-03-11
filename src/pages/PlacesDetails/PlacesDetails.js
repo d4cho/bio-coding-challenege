@@ -9,14 +9,9 @@ import BackButton from "../../components/buttons/BackButton";
 
 const PlacesDetails = () => {
     const { placeId } = useParams();
-    const {
-        placesStore,
-        getPlaceDetailData,
-        isLoading,
-        errorMsg,
-        imageSrc,
-        setImageSrc,
-    } = useContext(PlacesContext);
+    const { placesStore, getPlaceDetailData, isLoading, errorMsg } = useContext(
+        PlacesContext
+    );
 
     useEffect(() => {
         getPlaceDetailData(placeId);
@@ -55,9 +50,11 @@ const PlacesDetails = () => {
             <div className={styles.contentContainer}>
                 <img
                     className={styles.img}
-                    src={imageSrc}
+                    src={placeDetail.logo_url}
                     alt="logo"
-                    onError={() => setImageSrc("/images/default-image.jpg")}
+                    onError={(e) =>
+                        (e.target.src = "/images/default-image.jpg")
+                    }
                 />
                 <div className={styles.infoContainer}>
                     <h1>{placeDetail.name}</h1>

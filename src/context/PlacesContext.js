@@ -7,7 +7,6 @@ const PlacesProvider = ({ children }) => {
     const [placesStore, setPlacesStore] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [errorMsg, setErrorMsg] = useState("");
-    const [imageSrc, setImageSrc] = useState("");
 
     const getPlacesData = useCallback(async () => {
         try {
@@ -35,12 +34,9 @@ const PlacesProvider = ({ children }) => {
                     );
                     const store = { ...placesStore, [placeId]: response.data };
                     setPlacesStore(store);
-                    setImageSrc(response.data.logo_url);
                 } catch (error) {
                     setErrorMsg("Oops... couldn't retrieve data");
                 }
-            } else {
-                setImageSrc(placesStore[placeId].logo_url);
             }
             setIsLoading(false);
         },
@@ -53,8 +49,6 @@ const PlacesProvider = ({ children }) => {
                 placesStore,
                 isLoading,
                 errorMsg,
-                imageSrc,
-                setImageSrc,
                 getPlacesData,
                 getPlaceDetailData,
             }}
