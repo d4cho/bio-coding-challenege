@@ -8,19 +8,23 @@ describe("BackButton Component", () => {
             shallow(<BackButton />);
         });
 
+        let wrapper;
+        beforeEach(() => {
+            const props = {
+                text: "test text",
+            };
+            wrapper = shallow(<BackButton {...props} />);
+        });
+
         it("should render a link", () => {
-            const wrapper = shallow(<BackButton />);
             const link = wrapper.find('[data-test="BackButton"]');
             expect(link.length).toBe(1);
         });
 
         it("should render a link with text from props", () => {
-            const props = {
-                text: "test text",
-            };
-            const wrapper = shallow(<BackButton {...props} />);
             const text = wrapper.find('[data-test="BackButton"]').text();
-            expect(text).toEqual(props.text);
+            console.log(text);
+            expect(text).toEqual("test text");
         });
     });
 });
