@@ -8,8 +8,13 @@ const Loading = ({ loadingMsg }) => {
 
     return (
         <div className={styles.container}>
-            <div>{loadingMsg}</div>
-            <PacmanLoader color={color} size={50} margin={0} />
+            <div data-test="loadingMsg">{loadingMsg}</div>
+            <PacmanLoader
+                data-test="loadingBar"
+                color={color}
+                size={50}
+                margin={0}
+            />
         </div>
     );
 };
