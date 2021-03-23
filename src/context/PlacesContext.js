@@ -1,9 +1,13 @@
-import React, { createContext, useState, useCallback } from "react";
+import React, { createContext, useState, useCallback, useContext } from "react";
 import axios from "axios";
 
 export const PlacesContext = createContext();
 
-const PlacesProvider = ({ children }) => {
+export const usePlacesContext = () => {
+    return useContext(PlacesContext);
+};
+
+export const PlacesProvider = ({ children }) => {
     const [placesStore, setPlacesStore] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [errorMsg, setErrorMsg] = useState("");
@@ -57,5 +61,3 @@ const PlacesProvider = ({ children }) => {
         </PlacesContext.Provider>
     );
 };
-
-export default PlacesProvider;

@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import PlacesProvider, { PlacesContext } from "./PlacesContext";
+import { PlacesProvider, PlacesContext } from "./PlacesContext";
 
 describe("Places Context", () => {
     let wrapper;

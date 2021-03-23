@@ -1,15 +1,18 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Places.module.css";
-import { PlacesContext } from "../../context/PlacesContext";
+import { usePlacesContext } from "../../context/PlacesContext";
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 
 const Places = () => {
-    const { placesStore, getPlacesData, isLoading, errorMsg } = useContext(
-        PlacesContext
-    );
+    const {
+        placesStore,
+        getPlacesData,
+        isLoading,
+        errorMsg,
+    } = usePlacesContext();
 
     useEffect(() => {
         getPlacesData();
@@ -45,8 +48,8 @@ const Places = () => {
     if (isLoading) {
         return (
             <div className={styles.container}>
-                <h1>Places Page</h1>
-                <Loading loadingMsg="Loading..." />
+                <h1 data-test="header">Places Page</h1>
+                <Loading data-test="loadingComponent" loadingMsg="Loading..." />
             </div>
         );
     }
