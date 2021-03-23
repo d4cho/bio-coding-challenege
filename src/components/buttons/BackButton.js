@@ -5,7 +5,7 @@ import styles from "./BackButton.module.css";
 
 const BackButton = ({ text }) => {
     return (
-        <Link to="/" className={styles.btn}>
+        <Link data-test="BackButton" to="/" className={styles.btn}>
             {text}
         </Link>
     );
