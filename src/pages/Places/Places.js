@@ -25,7 +25,11 @@ const Places = () => {
             let imgSrc = place.logo_url;
 
             return (
-                <div key={id} className={styles.cardContainer}>
+                <div
+                    data-test="cards"
+                    key={id}
+                    className={styles.cardContainer}
+                >
                     <img
                         className={styles.img}
                         src={imgSrc}
@@ -35,12 +39,18 @@ const Places = () => {
                         }
                     />
                     <div>
-                        <Link className={styles.link} to={`/places/${id}`}>
+                        <Link
+                            data-test="name"
+                            className={styles.link}
+                            to={`/places/${id}`}
+                        >
                             {name}
                         </Link>
                     </div>
-                    <a href={website_url}>{website_url}</a>
-                    <div>{address}</div>
+                    <a data-test="url" href={website_url}>
+                        {website_url}
+                    </a>
+                    <div data-test="address">{address}</div>
                 </div>
             );
         });
@@ -58,7 +68,7 @@ const Places = () => {
         return (
             <div className={styles.container}>
                 <h1>Places Page</h1>
-                <Error errorMsg={errorMsg} />
+                <Error data-test="errorComponent" errorMsg={errorMsg} />
             </div>
         );
     }
