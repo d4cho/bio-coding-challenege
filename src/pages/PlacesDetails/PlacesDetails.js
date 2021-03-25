@@ -1,17 +1,20 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import styles from "./PlacesDetails.module.css";
-import { PlacesContext } from "../../context/PlacesContext";
+import { usePlacesContext } from "../../context/PlacesContext";
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 import BackButton from "../../components/buttons/BackButton";
 
 const PlacesDetails = () => {
     const { placeId } = useParams();
-    const { placesStore, getPlaceDetailData, isLoading, errorMsg } = useContext(
-        PlacesContext
-    );
+    const {
+        placesStore,
+        getPlaceDetailData,
+        isLoading,
+        errorMsg,
+    } = usePlacesContext();
 
     useEffect(() => {
         getPlaceDetailData(placeId);
@@ -20,8 +23,11 @@ const PlacesDetails = () => {
     if (isLoading) {
         return (
             <div className={styles.container}>
-                <BackButton text={"< Go back to Places"} />
-                <Loading loadingMsg="Loading..." />
+                <BackButton
+                    data-test="backButton"
+                    text={"< Go back to Places"}
+                />
+                <Loading data-test="loadingComponent" loadingMsg="Loading..." />
             </div>
         );
     }
@@ -30,7 +36,7 @@ const PlacesDetails = () => {
         return (
             <div className={styles.container}>
                 <BackButton text={"< Go back to Places"} />
-                <Error errorMsg={errorMsg} />
+                <Error data-test="errorComponent" errorMsg={errorMsg} />
             </div>
         );
     }
@@ -57,9 +63,9 @@ const PlacesDetails = () => {
                     }
                 />
                 <div className={styles.infoContainer}>
-                    <h1>{placeDetail.name}</h1>
-                    <h3>{placeDetail.address}</h3>
-                    <a href={placeDetail.website_url}>
+                    <h1 data-test="name">{placeDetail.name}</h1>
+                    <h3 data-test="address">{placeDetail.address}</h3>
+                    <a data-test="url" href={placeDetail.website_url}>
                         {placeDetail.website_url}
                     </a>
                     <h3>{placeHours}</h3>
